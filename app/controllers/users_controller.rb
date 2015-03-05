@@ -9,6 +9,8 @@ class UsersController < ApplicationController
   	if @user.save
   		flash[:success] ="Thanks for signing up!"
   		#log them in here
+      reset_session
+      session[:user_id] = @user.id
   		redirect_to root_path
   	else
   		flash[:error] = "Oops, try again"
