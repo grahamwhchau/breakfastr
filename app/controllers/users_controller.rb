@@ -14,6 +14,7 @@ class UsersController < ApplicationController
   		flash[:error] = "Oops, try again"
   		render :new
   end
+end
 
   def edit
   	@user = User.find(params [:id])
