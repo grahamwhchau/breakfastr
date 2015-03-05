@@ -7,7 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-
+	<header>
+		<%= link_to "Breakfastr", root_path %>
+		<!-- if logged_in? -->
+			<%# link_to "Log out", session_path, method: :delete %>
+			<%# link_to "Add a pastry", new_user_pastry_path(current_user) %>
+		<!-- else -->
+			<%# link_to "Log in", new_session_path %>
+			<%# link_to "Sign up", new_user_path %>
+		<!-- end -->
+	</header>
+	<% flash.each do |k,v| %>
+		<div class="flash <% k %>">
+			<p><%= v %></p>
+		</div>
+	<% end %>
 <%= yield %>
 
 </body>
