@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   helper_method :logged_in?, :current_user
 
   def logged_in?
-  	session [:user_id].present?
+  	session[:user_id].present?
   end
   def current_user
   	User.find(session[:user_id])
@@ -17,5 +17,11 @@ class ApplicationController < ActionController::Base
   		flash[:error] ="You must be logged in to do that."
   		redirect_to new_session_path
   	end
+  end
+  def require_owner
+      unless current_user.owns(@pastry)
+      flash[:error] ="You must be the baker of the pastry to do that."
+      redirect_to root_path
+    end
   end
 end

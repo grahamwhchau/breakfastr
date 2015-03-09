@@ -20,9 +20,9 @@ class SessionsController < ApplicationController
   def show
   end
 
-  def destry
+  def destroy
   	reset_session
   	flash[:success] ="See you soon!"
   	redirect_to root_path
-
+  end
 end

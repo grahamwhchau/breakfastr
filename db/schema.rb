@@ -11,15 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150305151531) do
+ActiveRecord::Schema.define(version: 20150306163323) do
+
+  create_table "orders", force: :cascade do |t|
+    t.string   "stripe_token"
+    t.integer  "user_id"
+    t.integer  "pastry_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
+  end
 
   create_table "pastries", force: :cascade do |t|
     t.string   "name"
     t.integer  "price_in_pence"
     t.text     "description"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.integer  "user_id"
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
+
+  add_index "pastries", ["user_id"], name: "index_pastries_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email"
